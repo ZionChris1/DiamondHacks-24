@@ -1,0 +1,24 @@
+
+
+#container {
+    height: 150px;
+    width: 400px;
+    background-color: #eae6dd;
+    margin: 20px auto;
+    border: 5px solid #000000;
+
+}
+
+#currentLinkLabel {
+    color: red;      
+    font-family: Consolas, monospace; 
+    font-weight: bold;
+  }
+
+  #suggestedLinkLabel {
+   
+    color: green; 
+    font-family: Consolas, monospace; 
+    font-weight: bold;
+  }
+  
