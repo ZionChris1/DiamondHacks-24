@@ -17,14 +17,29 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 });
 
 function query(data) {
-	const response = fetch(
-		"https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
-		{
-			headers: { Authorization: "Bearer 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" },
-			method: "POST",
-			body: data,
-		}
-	);
-	const result = response;
-	return result;
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer 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");
+    
+    const raw = JSON.stringify({
+      "inputs": data
+    });
+    
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+    
+    return fetch("https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1", requestOptions)
+      .then((response) => response.text())
+      .then((result) => result);
+}
+
+async function isSuspicious(url) {
+    const response = await query("Your job is to determine if the provided url is a potential phishing link. If the url is suspicous reply with exactly {THIS URL IS SUSPICIOUS}. Make sure to use all caps and include the {} Keep your reply short and to the point. The url is " + url + " Your answer here?");
+    console.log(JSON.parse(response)[0]["generated_text"].split("?"));
+    console.log(JSON.parse(response)[0]["generated_text"].split("?").includes("THIS URL IS SUSPICIOUS"));
+    return JSON.parse(response)[0]["generated_text"].split("?").includes("THIS URL IS SUSPICIOUS");
 }
