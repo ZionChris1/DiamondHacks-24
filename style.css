@@ -1,24 +1,72 @@
-
-
 #container {
-    height: 150px;
-    width: 400px;
-    background-color: #eae6dd;
-    margin: 20px auto;
-    border: 5px solid #000000;
+  width: 450px;
+  background-color: #dbd1bb;
+  padding: 20px;
+  border: 2px solid #000;
+  /* Added to align items to the start */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(#20A4F3, #f0f8ff)
+}
 
+#inputContainer {
+  display: flex;
+  
+  
+}
+
+.phishy-header {
+  text-align: center;
+  width: 100%;
+  font-size: 14px; 
+  font-weight: bold;
+}
+
+#currentLinkLabel, #suggestedLinkLabel {
+  font-family: Consolas, monospace;
+  font-weight: bold;
+  font-size: 13px; 
+  margin-top: 5px; /* Reduced spacing at the top */
+  margin-bottom: 5px; /* Reduced spacing at the bottom */
+  text-align: center;
+  width: 100%;
 }
 
 #currentLinkLabel {
-    color: red;      
-    font-family: Consolas, monospace; 
-    font-weight: bold;
-  }
+  color: red;
+}
 
-  #suggestedLinkLabel {
-   
-    color: green; 
-    font-family: Consolas, monospace; 
-    font-weight: bold;
-  }
-  
+#suggestedLinkLabel {
+  color: green;
+}
+
+#phishyLinks {
+  text-align: center; /* Centers the text */
+  font-weight: bold; /* Makes the text bold */
+  font-size: 13px; /* Increases the font size, adjust as needed */
+  margin: 0; /* Removes default margin to better control spacing */
+ 
+}
+
+#fishyCheckPrompt {
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  width: 100%; 
+  margin: 0;
+ 
+}
+
+#urlInput {
+  font-size: 13px;
+  justify-content: center;
+  flex-grow: 1;
+  margin: 0;
+ 
+}
+
+#checkButton {
+  font-size: 13px;
+  text-align: center;
+}
