@@ -11,4 +11,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  
+  // Handler function for id="checkButton"
+  document.getElementById('checkButton').addEventListener('click', async function() {
+    // Get the value from id="urlInput"
+    var urlInputValue = document.getElementById('urlInput').value;
+    
+    if (await isSuspicious(urlInputValue)) {
+      // Do something if the URL is suspicious
+      alert('URL is unsafe. Proceed at your own risk.');
+    } else {
+      alert('URL is safe.');
+    }
+  });
