@@ -40,6 +40,6 @@ function query(data) {
 async function isSuspicious(url) {
     const response = await query("Your job is to determine if the provided url is a potential phishing link. If the url is suspicous reply with exactly {THIS URL IS SUSPICIOUS}. Make sure to use all caps and include the {} Keep your reply short and to the point. The url is " + url + " Your answer here?");
     console.log(JSON.parse(response)[0]["generated_text"].split("?"));
-    console.log(JSON.parse(response)[0]["generated_text"].split("?").includes("THIS URL IS SUSPICIOUS"));
-    return JSON.parse(response)[0]["generated_text"].split("?").includes("THIS URL IS SUSPICIOUS");
+    console.log(JSON.parse(response)[0]["generated_text"].split("?")[1].includes("THIS URL IS SUSPICIOUS"));
+    return JSON.parse(response)[0]["generated_text"].split("?")[1].includes("THIS URL IS SUSPICIOUS");
 }
