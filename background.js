@@ -15,3 +15,16 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         chrome.tabs.update(tabId, { url: chrome.runtime.getURL(redirectUrl) });
     }
 });
+
+function query(data) {
+	const response = fetch(
+		"https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2",
+		{
+			headers: { Authorization: "Bearer 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" },
+			method: "POST",
+			body: data,
+		}
+	);
+	const result = response;
+	return result;
+}
