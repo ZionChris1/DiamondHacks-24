@@ -11,13 +11,36 @@
   
 
 
-    <h1>Phishing Diamond Hacks</h1>
+    
     <div id="container">
+        
+        <div class="phishy-header">
+            Phishy Links
+          </div>
 
         <p id="currentLinkLabel">Suspicious, current link: <span id="currentLink"></span></p>
         <p id="suggestedLinkLabel">Suggested, correct link: <span id="suggestedLink">exampledomain.com</span></p>
-    
+      
+        
+        <div id="fishyCheckPrompt">Does a website smell fishy?</div>
+        <div id="inputContainer">
+            <input type="text" id="urlInput" value="exampleurl.com" placeholder="Enter URL here">
+            <button id="checkButton">Enter</button>
+        </div>
+       
+        <label class="form-control">
+            <input type="checkbox" name="checkbox" />
+            Auto-correct urls...
+          </label>
+         
+         
+       
+        
     </div>
+
+  
+    </div>
+
 
     <script src="popup.js"></script>
     <script src="background.js"></script>
