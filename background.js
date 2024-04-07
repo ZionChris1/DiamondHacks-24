@@ -1,14 +1,16 @@
 // Define the block list of URLs
-const blockList = [
-    'blockedurl1.com',
-    'wikipedia.org',
-    'google.com'
+const allowList = [
+    'google.com',
+    'chrome://newtab/'
 ];
 
 // Listen for tab updates
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
     // Check if the tab URL matches any URL in the block list
-    if (blockList.some(url => tab.url.includes(url)) && !tab.url.includes('blocked.html')) {
+    const suspicious = await isSuspicious(tab.url);
+    console.log(suspicious);
+    console.log(tab.url);
+    if (suspicious && !tab.url.includes('blocked.html') && !allowList.some(url => tab.url.includes(url))) {
         // Redirect the tab to blocked.html with the blocked URL as a query parameter
         const blockedUrl = encodeURIComponent(tab.url);
         const redirectUrl = `blocked.html?url=${blockedUrl}`;
@@ -38,8 +40,7 @@ function query(data) {
 }
 
 async function isSuspicious(url) {
-    const response = await query("Your job is to determine if the provided url is a potential phishing link. If the url is suspicous reply with exactly {THIS URL IS SUSPICIOUS}. Make sure to use all caps and include the {} Keep your reply short and to the point. The url is " + url + " Your answer here?");
-    console.log(JSON.parse(response)[0]["generated_text"].split("?"));
-    console.log(JSON.parse(response)[0]["generated_text"].split("?")[1].includes("THIS URL IS SUSPICIOUS"));
+    const response = await query("Your job is to determine if the provided url is a potential phishing link. If the url is suspicous reply with exactly {THIS URL IS SUSPICIOUS}. Make sure to use all caps and include the {} Keep your reply short and to the point. Only say the link is suspicious if you think so. The url is " + url + " Your answer here?");
+    console.log(JSON.parse(response)[0]["generated_text"].split("?")[1])
     return JSON.parse(response)[0]["generated_text"].split("?")[1].includes("THIS URL IS SUSPICIOUS");
 }
